@@ -2,32 +2,17 @@ import { faSafari } from '@fortawesome/free-brands-svg-icons';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Story } from '../Story';
+import { Story } from '../story';
 
 interface TopStoryProps {
   story: Story;
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #000;
-  border-top: 1px solid #262626;
-  border-bottom: 1px solid #262626;
-  margin-bottom: 0.5rem;
-`;
-
-const Section = styled.div`
-  padding: 0.5rem 2rem;
-  width: 42rem;
-  align-items: left;
-`;
-
+/*   color: #d0d1d6; */
 const Headline = styled.h2`
-  color: #d0d1d6;
   display: block;
   font-size: 1.2rem;
   font-weight: normal;
@@ -53,10 +38,12 @@ const NavBracket = styled.div`
 `;
 
 const Url = styled.div`
+  color: #007aff;
   display: flex;
   align-items: center;
   margin: 0 0.5rem;
   min-width: 0;
+  cursor: pointer;
 `;
 
 const NoOverflow = styled.span`
@@ -65,13 +52,43 @@ const NoOverflow = styled.span`
   white-space: nowrap;
 `;
 
-export const TopStory: React.FC<TopStoryProps> = ({ story }) => {
+const Wrapper = styled.div`
+  padding: 0.5rem 2rem 1rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  :hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+`;
+
+/* color: #94969d;*/
+const Link = styled(RouterLink)`
+  color: inherit;
+
+  &:link {
+    color: inherit;
+
+    h2 {
+      color: rgba(255, 255, 255, 0.87);
+    }
+  }
+  &:visited {
+    color: inherit;
+  }
+`;
+
+export const TopStory = ({ story }: TopStoryProps) => {
+  const handleUrlClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+    window.open(story.url, "_blank");
+  };
+
   return (
-    <Container>
-      <Section>
+    <Link to={`/story/${story.id}`}>
+      <Wrapper>
         <Headline>{story.title}</Headline>
         {story.url && (
-          <LinkBox>
+          <LinkBox onClick={handleUrlClick}>
             <FontAwesomeIcon size={"2x"} icon={faSafari} />
             <Url>
               <NoOverflow>{story.url}</NoOverflow>
@@ -81,8 +98,7 @@ export const TopStory: React.FC<TopStoryProps> = ({ story }) => {
             </NavBracket>
           </LinkBox>
         )}
-        <p>endlesssky</p>
-      </Section>
-    </Container>
+      </Wrapper>
+    </Link>
   );
 };

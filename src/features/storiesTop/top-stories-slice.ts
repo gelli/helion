@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Story } from './Story';
+import { Story } from './story';
 
 interface TopStoriesState {
   stories: Array<Story>;

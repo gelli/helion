@@ -1,17 +1,27 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { TopStories } from '../features/topstories/components/TopStories';
+import { LoadTopStories } from '../features/storiesTop/components/load-top-stories';
+import { TopStoriesPage } from '../features/storiesTop/components/top-stories-page';
+import { StoryDetail } from '../features/storyDetail/components/StoryDetail';
 import { Container } from '../layout/components/Container';
 
 const routing = (
   <BrowserRouter>
-    <Route path="/" component={TopStories} exact />
+    <Switch>
+      <Route path="/" component={TopStoriesPage} exact />
+      <Route path="/story/:id" component={StoryDetail} />
+    </Switch>
   </BrowserRouter>
 );
 
 const App: React.FC = () => {
-  return <Container>{routing}</Container>;
+  return (
+    <Container>
+      <LoadTopStories />
+      {routing}
+    </Container>
+  );
 };
 
 export default App;

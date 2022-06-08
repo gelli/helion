@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getTopStoriesStart } from '../topstories-slice';
+import { getTopStoriesStart } from '../top-stories-slice';
 
 interface LoadTopStoriesProps {}
 

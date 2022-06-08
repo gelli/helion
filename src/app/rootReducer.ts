@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { reducer } from '../features/topstories/topstories-slice';
+import { reducer } from '../features/storiesTop/top-stories-slice';
 
 export const rootReducer = combineReducers({
   topstories: reducer,

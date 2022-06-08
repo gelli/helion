@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import { topStoriesEpic } from '../features/topstories/epics';
+import { topStoriesEpic } from '../features/storiesTop/epics';
 import { epicMiddleware } from './middleware';
 import { rootReducer } from './rootReducer';
 
